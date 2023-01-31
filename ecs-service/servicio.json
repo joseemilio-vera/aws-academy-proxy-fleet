@@ -1,0 +1,30 @@
+{
+   "cluster": "proxy-cluster",
+   "deploymentConfiguration": { 
+      "maximumPercent": 200,
+      "minimumHealthyPercent": 100 
+   },
+   "deploymentController": { 
+      "type": "ECS"
+   },
+   "desiredCount": 3,
+   "launchType": "FARGATE",
+   "loadBalancers": [ 
+      { 
+         "containerName": "squid",
+         "containerPort": 3128,
+         "loadBalancerName": "proxy-nlb",
+         "targetGroupArn": "<proxy-tg>"
+      }
+   ],
+   "networkConfiguration": { 
+      "awsvpcConfiguration": { 
+         "assignPublicIp": "DISABLED",
+         "securityGroups": [ "<proxy-sg>" ],
+ 	 "subnets": [ "<proxy-subnets>" ]
+      }
+   },
+   "schedulingStrategy": "REPLICA",
+   "serviceName": "proxy-service",
+   "taskDefinition": "proxy-web"
+}

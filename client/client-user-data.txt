@@ -1,9 +1,0 @@
-#!/bin/bash
-service-endpoint=<punto de enlace del servicio>
-export http_proxy=http://$service-endpoint:3128
-export https_proxy=http://$service-endpoint:3128
-echo "http_proxy=http://$service-endpoint:3128" >> /etc/environment
-echo "https_proxy=http://$service-endpoint:3128" >> /etc/environment
-yum update -y
-yum install lynx -y
-reboot

@@ -1,5 +1,0 @@
-Inbound:
----
-Outbound:
-HTTPS / Anywhere  (para acceso a los VPC Endpoints)
-3128 / Anywhere   (para acceso al servicio Proxy)

@@ -1,0 +1,6 @@
+{
+    "TargetValue": 75,
+    "PredefinedMetricSpecification": {
+        "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+    }
+}
