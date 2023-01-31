@@ -1,0 +1,16 @@
+Crear un repositorio en Amazon ECR para la imagen del contenedor Squid
+Crear la imagen en local a partir del directorio docker
+Subir la imagen a Amazon ECR
+Crear una definición de tarea FARGATE con un único contenedor apuntando al repo de ECR:
+ * Asignar .5 vCPU y 1 GB
+ * Mapear al puerto 3128
+ * Task Role: None
+ * Task execution Role: LabRole (necesario para descargar la imagen)
+
+Crear un servicio a partir de la tarea anterior:
+ * Vinculado al NLB:
+   - Target group: 3128 TCP
+   - Listener: 3128 TCP
+ * Desplegado en las subredes privadas de la VPC de servicio
+
+

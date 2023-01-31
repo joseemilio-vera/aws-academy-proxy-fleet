@@ -1,0 +1,7 @@
+Sistema Operativo: Amazon Linux 2
+Instancia: t4g.micro
+VPC: client-VPC
+Subred: privada
+Grupo de seguridad: (ver documento)
+IAM Profile: LabRole (necesario para registro en AWS SSM)
+User Data: (ver documento)

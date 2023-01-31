@@ -1,0 +1,2 @@
+Crear un NLB privado, mapeado a las subredes privadas
+Eliminar los listeners

@@ -1,0 +1,4 @@
+Inbound:
+3128 TCP / 0.0.0.0/0
+Outbound:
+All traffic / 0.0.0.0/0

@@ -1,0 +1,12 @@
+Crear una VPC con:
+* Dos subredes públicas
+  192.168.0.0/26, 192.168.0.64/26
+* Dos subredes privadas
+  192.168.0.128.0/26, 192.168.192.0/26
+
+Crear puntos de enlace de VPC en las subredes privadas para:
+* ec2-messages
+* ssm
+* ssm-messages
+
+Crear un punto de enlace de servicio para el NLB de la VPC de servicio
