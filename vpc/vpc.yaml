@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Plantilla que crea una VPC para el despliegue de una infraestructura altamente disponible en dos AZs. Cada AZ tendra una subred publica y dos subredes privadas. Ademas, crea una instancia bastion en la subred publica en la AZ1 con un cliente MySQL
+Description: Plantilla que crea una VPC para el despliegue de una infraestructura altamente disponible en dos AZs. Cada AZ tendra una subred publica y dos subredes privadas. Opcionalmente, crea una instancia bastion en la subred publica en la AZ1 con un cliente MySQL y/o dos Gateway NATs en las subredes publicas
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
