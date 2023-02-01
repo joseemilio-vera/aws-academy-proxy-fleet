@@ -13,7 +13,6 @@
       { 
          "containerName": "squid",
          "containerPort": 3128,
-         "loadBalancerName": "proxy-nlb",
          "targetGroupArn": "<proxy-tg>"
       }
    ],
