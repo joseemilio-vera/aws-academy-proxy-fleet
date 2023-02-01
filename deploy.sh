@@ -63,3 +63,4 @@ clientsg=$(aws ec2 create-security-group --group-name client-sg --description "T
 aws ec2 authorize-security-group-egress --group-id $clientsg --protocol tcp --port 3128 --cidr 0.0.0.0/0 --region us-east-1
 aws ec2 revoke-security-group-egress --group-id $clientsg --protocol all --cidr 0.0.0.0/0 --region us-east-1
 sed -i 's|<punto-enlace>|'$endpointdns'|g' ./client/userdata.sh
+aws ec2 run-instances --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-arm64-gp2 --instance-typ t4g.small --security-group-ids sg-0e39524be646f9992 --subnet-id subnet-0d2378ad50d6d1365 --iam-instance-profile Arn=$profile,Name=LabInstanceProfile --user-data file://client/userdata.sh --region us-east-1
