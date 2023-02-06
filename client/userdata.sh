@@ -11,7 +11,7 @@ Environment="http_proxy=http://<punto-enlace>:3128"
 Environment="https_proxy=http://<punto-enlace>:3128"
 Environment="no_proxy=169.254.169.254"
 EOF
-yum update -y
-yum install lynx -y
 sudo systemctl daemon-reload
 systemctl restart amazon-ssm-agent
+yum update -y
+yum install lynx -y
