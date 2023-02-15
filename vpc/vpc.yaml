@@ -20,6 +20,7 @@ Metadata:
           default: "Configuracion del bastion"
         Parameters:
           - Bastion
+          - AMI
     ParameterLabels:
       Nombre:
         default: "Nombre de la VPC"
@@ -39,12 +40,8 @@ Metadata:
         default: "Crear NAT Gateways?"
       Bastion:
         default: "Crear Bastion?"
-Mappings:
-  AMI:
-    us-east-1:
-      "HVM64": "ami-081dc0707789c2daf"
-    us-west-2:
-      "HVM64": "ami-0efabcf945ffd8831"
+      AMI:
+        default: "AMI del Bastion"
 Parameters:
   Nombre:
     Type: String
@@ -94,6 +91,9 @@ Parameters:
       - "SI"
       - "NO"
     Default: "SI"
+  AMI:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-arm64-gp2
 Conditions:
   CrearInternetGateway: !Equals 
     - !Ref InternetGateway
@@ -237,7 +237,6 @@ Resources:
   rutaIGW:
     Type: AWS::EC2::Route
     Condition: CrearInternetGateway
-    DependsOn: miIGW
     Properties:
       RouteTableId: !Ref rutasPublicas
       GatewayId: !Ref miIGW
@@ -263,7 +262,6 @@ Resources:
   rutaNAT1:
     Type: AWS::EC2::Route
     Condition: CrearNATGateways
-    DependsOn: NAT1
     Properties:
       RouteTableId: !Ref rutasPrivadas1
       NatGatewayId: !Ref NAT1
@@ -271,7 +269,6 @@ Resources:
   rutaNAT2:
     Type: AWS::EC2::Route
     Condition: CrearNATGateways
-    DependsOn: NAT2
     Properties:
       RouteTableId: !Ref rutasPrivadas2
       NatGatewayId: !Ref NAT2
@@ -306,7 +303,7 @@ Resources:
     Type: AWS::EC2::Instance
     Condition: CrearBastion
     Properties:
-      ImageId: !FindInMap [AMI, !Ref "AWS::Region", HVM64]
+      ImageId: !Ref AMI
       AvailabilityZone:
         Fn::Select:
           - 0
@@ -317,8 +314,7 @@ Resources:
       SubnetId: !Ref publica1
       IamInstanceProfile: LabInstanceProfile
       UserData:
-        Fn::Base64:
-          !Sub |
+        Fn::Base64: |
             #!/bin/bash
             yum update -y
             yum install mysql -y
