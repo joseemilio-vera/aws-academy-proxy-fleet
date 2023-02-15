@@ -33,7 +33,7 @@ Metadata:
         default: "Subred Publica 2"
       SubredPrivada2:
         default: "Subred Privada 2"
-      InternetGateways:
+      InternetGateway:
         default: "Crear Internet Gateway"
       NATGateways:
         default: "Crear NAT Gateways?"
